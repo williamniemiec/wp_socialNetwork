@@ -6,9 +6,6 @@
         <link rel='stylesheet' href='<?php echo BASE_URL; ?>assets/css/bootstrap.min.css' />
         <link rel='stylesheet' href='<?php echo BASE_URL; ?>assets/css/style.css' />
         <link href='http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css' rel='stylesheet' />
-        <style>
-            
-        </style>
     </head>
 
     <body>
@@ -37,16 +34,11 @@
     						<li class="dropdown-item"><a href="<?php echo BASE_URL; ?>login/logout">Logout</a></li>						
 						</ul>
 					</li>
-					<!--  
-					<li class="nav-item nav-link"><?php echo $name; ?></li>
-					<li class="nav-item"><a href="<?php echo BASE_URL; ?>login/logout" class="nav-link">Logout</a></li>
-					-->
 				</ul>
 			</div>
 		</nav>
     
         <!-- Scripts -->
-        
         <script src='<?php echo BASE_URL; ?>assets/js/bootstrap.bundle.min.js'></script>
         <script>var BASE_URL = "<?php echo BASE_URL; ?>"</script>
         <script src='<?php echo BASE_URL; ?>assets/js/script.js'></script>

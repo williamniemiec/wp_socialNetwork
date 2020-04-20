@@ -1,5 +1,6 @@
 <h1>HOME</h1>
 
+<!-- Shows error message if there is one -->
 <?php if (!empty($noMember)): ?>
 	<div class="alert alert-danger fade show">
 		<?php echo $noMember; ?>
@@ -8,6 +9,7 @@
 <?php endif; ?>
 
 <div class="row">
+	<!-- Center area -->
 	<div class="col-sm-8">
 		<h4>Feed</h4>
 		
@@ -39,8 +41,9 @@
     	</ul>
 	</div>
 	
-	
+	<!-- Right area -->
 	<div class="col-sm-4">
+		<!-- Friendship requests -->
 		<?php if (!empty($friendshipRequests)): ?>
     		<div class="widget">
     			<h4>Friend requests</h4>
@@ -60,6 +63,7 @@
     		</div>
 		<?php endif; ?>
 		
+		<!-- Friend suggestions -->
     	<div class="widget">
     		<h4>Friend suggestions</h4>
     		<div class="content">
@@ -76,6 +80,7 @@
     		</div>
     	</div>
     	
+    	<!-- Friends -->
     	<div class="widget">
     		<h4>Friends (<?php echo count($friends); ?>)</h4>
     		<div class="content friends">
@@ -92,10 +97,12 @@
     		</div>
     	</div>
     	
+    	<!-- Groups -->
     	<div class="widget">
     		<h4>Groups</h4>
     		<div class="content">
 				<button class="btn btn-outline-primary" data-toggle="modal" data-target="#create_group">Create</button>
+				
 				<?php foreach ($groups as $group): ?>
             		<div class="group">
             			<div class="name">
@@ -114,6 +121,8 @@
         				</div>
             		</div>
         		<?php endforeach; ?>
+        		
+        		<!-- Create group form -->
 				<div id="create_group" class="modal fade">
 					<div class="modal-dialog modal-dialog-centered modal-lg">
 						<div class="modal-content">
@@ -137,8 +146,8 @@
 							</div>
 						</div>
 					</div>
-				</div>
+				</div><!-- end create group form -->
     		</div>
-    	</div>
-	</div>
+    	</div><!-- end groups -->
+	</div><!-- end right area -->
 </div>

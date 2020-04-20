@@ -4,25 +4,29 @@ namespace controllers;
 use core\Controller;
 use models\Users;
 
-/**
 
-*/
+/**
+ * Responsible for profile view behavior.
+ */
 class ProfileController extends Controller
 {
     //-----------------------------------------------------------------------
     //        Methods
     //-----------------------------------------------------------------------
-    /*
-     @Override
+    /**
+     * @Override
      */
     public function index ()
     {
-        if (!Users::isLogged()) { header("Location: ".BASE_URL); }
+        if (!Users::isLogged()) { 
+            header("Location: ".BASE_URL);
+            exit;
+        }
         
         $users = new Users($_SESSION['sn_login']);
         
         $params = array(
-            'title' => 'Home',
+            'title' => 'Social Network - Profile',
             'name' => $users->getName(),
             'data' => $users->getData(),
             'isOwner' => true
@@ -31,15 +35,24 @@ class ProfileController extends Controller
         $this->loadTemplate("profile", $params);
     }
     
+    /**
+     * Displays an user profile.
+     *
+     * @param int $id_user Id of the user to be displayed
+     */
     public function open($id_user)
     {
-        if (!Users::isLogged()) { header("Location: ".BASE_URL); }
-        
-        $users = new Users($_SESSION['sn_login']);
-        
         if (empty($id_user)) {
             header("Location: ".BASE_URL."profile");
+            exit;
         }
+        
+        if (!Users::isLogged()) { 
+            header("Location: ".BASE_URL);
+            exit;
+        }
+        
+        $users = new Users($_SESSION['sn_login']);
         
         $params = array(
             'title' => 'Home',
@@ -51,16 +64,22 @@ class ProfileController extends Controller
         $this->loadTemplate("profile", $params);
     }
     
+    /**
+     * Edits current user profile.
+     */
     public function edit()
     {
-        if (!Users::isLogged()) { header("Location: ".BASE_URL); }
+        if (!Users::isLogged()) { 
+            header("Location: ".BASE_URL); 
+            exit; 
+        }
         
         $users = new Users($_SESSION['sn_login']);
         $error = false;
         
-        // Form was sent
+        // Checks if the form was sent
         if (!empty($_POST['name'])) {
-            if($users->edit($_POST['name'], $_POST['bio'], $_POST['genre'], $_POST['password'])) {
+            if ($users->edit($_POST['name'], $_POST['bio'], $_POST['genre'], $_POST['password'])) {
                 header("Location: ".BASE_URL."profile");
                 exit;
             }
@@ -74,8 +93,6 @@ class ProfileController extends Controller
             'data' => $users->getData(),
             'error' => $error
         );
-        
-        $params['notice'] = "";
         
         $this->loadTemplate("profile_edit", $params);
     }

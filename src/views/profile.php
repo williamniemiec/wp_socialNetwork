@@ -1,4 +1,6 @@
 <h1>Profile</h1>
+
+<!-- Shows edit button if it is the profile of the current user -->
 <?php if ($isOwner): ?>
 	<a class="btn btn-outline-primary btn-block" href="<?php echo BASE_URL; ?>profile/edit">Edit</a><br />
 <?php endif; ?>

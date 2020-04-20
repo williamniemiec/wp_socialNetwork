@@ -213,7 +213,7 @@ function enterGroup(obj,id_group)
 	
 	$.ajax({
 		type:'POST',
-		url:BASE_URL+"ajax/enter_group",
+		url:BASE_URL+"ajax/join_group",
 		data:{id_group:id_group},
 	});
 }

@@ -20,9 +20,30 @@
 				</ul>
 			</div>
 		</nav>
+		
 		<div class="container">
-			<h1>Welcome!</h1>
-			<h4>The better social network of local host</h4>
+			<h1>Login</h1>
+			
+			<!-- Shows error message if there is one -->
+			<?php if (!empty($notice)): ?>
+				<div class="alert alert-danger" role="alert">
+					<?php echo $notice; ?>
+				</div>
+			<?php endif; ?>
+			
+			<form method="POST">
+    			<div class="form-group">
+    				<label for="email">Email</label>
+    				<input id="email" type="email" name="email" class="form-control" />
+    			</div>
+    			
+    			<div class="form-group">
+    				<label for="password">Password</label>
+    				<input id="password" type="password" name="password" class="form-control" />
+    			</div>
+    			
+    			<input type="submit" class="btn btn-outline-primary btn-block" value="Login" />
+			</form>
 		</div>
 	
 		<!-- Scripts -->

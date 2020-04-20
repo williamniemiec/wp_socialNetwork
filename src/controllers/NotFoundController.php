@@ -1,7 +1,7 @@
 <?php
 namespace controllers;
 
-use \core\Controller;
+use core\Controller;
 use models\Users;
 
 
@@ -13,24 +13,23 @@ class NotFoundController extends Controller
     //-----------------------------------------------------------------------
     //        Methods
     //-----------------------------------------------------------------------
-    /*
-      @Override
-    */
+    /**
+     * @Override
+     */
 	public function index()
 	{
-        if (!Users::isLogged()) {
-            $this->loadView('404_noLogged', $params);
-        } else {
-            $users = new Users($_SESSION['sn_login']);
-            
-            $params = array(
-                'name' => $users->getName()
-            );
-            
-            $this->loadTemplate('404', $params);
-        }
+	    $params = array(
+	        'title' => "Social Network - 404",
+	    );
 	    
+        if (!Users::isLogged()) {
+            $this->loadView('404_noLogged');
+            exit;
+        }
         
+        $users = new Users($_SESSION['sn_login']);
+        $params['name'] = $users->getName();
         
+        $this->loadTemplate('404', $params);
 	}
 }

@@ -1,8 +1,7 @@
 <?php
 require 'environment.php';
 
-global $db;
-
+global $config;
 $config = array();
 
 if (ENVIRONMENT == 'development') {
@@ -19,10 +18,4 @@ if (ENVIRONMENT == 'development') {
 	$config['charset'] = 'utf8';
 	$config['dbuser'] = 'root';
 	$config['dbpass'] = '';
-}
-
-try {
-	$db = new \PDO("mysql:dbname=".$config['dbname'].";host=".$config['host'].";charset=".$config['charset'], $config['dbuser'], $config['dbpass']);
-} catch(\PDOException $e){
-	'"DATABASE CONNECTION ERROR: '.$e->getMessage();
 }

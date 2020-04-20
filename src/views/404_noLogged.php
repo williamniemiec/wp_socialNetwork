@@ -1,11 +1,8 @@
 <html>
 	<head>
-		<title>404</title>
+		<title>$title</title>
 		<link rel='stylesheet' href='<?php echo BASE_URL; ?>assets/css/bootstrap.min.css' />
 		<link rel='stylesheet' href='<?php echo BASE_URL; ?>assets/css/style.css' />
-		<style>
-
-		</style>
 	</head>
 	
 	<body>
@@ -20,6 +17,7 @@
 				</ul>
 			</div>
 		</nav>
+		
 		<div class="container">
     		<h2>Error! Page not found!</h2>
 		</div>

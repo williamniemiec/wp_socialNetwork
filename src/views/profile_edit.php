@@ -1,4 +1,6 @@
 <h1>Profile</h1>	
+
+<!-- Shows error message if there is one -->
 <?php if (!empty($error)): ?>
 	<div class="alert alert-danger" role="alert">
 		Error saving edits

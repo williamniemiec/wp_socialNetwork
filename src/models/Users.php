@@ -5,17 +5,28 @@ use core\Model;
 
 
 /**
-
+ * Responsible for users management.
  */
 class Users extends Model
 {
     //-----------------------------------------------------------------------
+    //        Attributes
+    //-----------------------------------------------------------------------
+    private $id_user;
+    
+    
+    //-----------------------------------------------------------------------
     //        Constructor
     //-----------------------------------------------------------------------
-    public function __construct($id = "")
+    /**
+     * Creates users manager.
+     *
+     * @param int $id_user [optional] Id of the current user
+     */
+    public function __construct($id_user = 0)
     {
         parent::__construct();
-        $this->id = $id;
+        $this->id_user = $id_user;
     }
 
 
@@ -62,7 +73,7 @@ class Users extends Model
             $response = "Email and / or password incorrect";
         } else {
             $_SESSION['sn_login'] = $sql->fetch()['id'];
-            $this->id = $sql->fetch()['id'];
+            $this->id_user = $sql->fetch()['id'];
         }
         
         return $response;
@@ -72,7 +83,7 @@ class Users extends Model
      * Registers a new user.
      *
      * @param string $name Name of the user
-     * @param string $genre Genre of the user
+     * @param int $genre Genre of the user
      * @param string $email Email of the user
      * @param string $password Password of the user
      * @return string Error message or empty string if user was successfully registered
@@ -97,60 +108,15 @@ class Users extends Model
     }
     
     /**
-     * Returns name of current user.
-     * 
-     * @return string Name of current user
-     */
-    public function getName($id_user = -1)
-    {
-        if (empty($this->id)) { return ""; }
-        
-        $response = "";
-        
-        $id_user = $id_user == -1 ? $id_user = $this->id : $id_user;
-        
-        $sql = $this->db->prepare("SELECT name FROM users WHERE id = ?");
-        $sql->execute(array($id_user));
-        
-        if ($sql->rowCount() > 0) {
-            $response = $sql->fetch()['name'];
-        }
-        
-        return $response;
-    }
-    
-    /**
-     * Returns information about current user.
-     * 
-     * @return array Data of current user
-     */
-    public function getData($id_user = -1)
-    {
-        if (empty($this->id)) { return array(); }
-        
-        $response = array();
-        
-        $id_user = $id_user == -1 ? $id_user = $this->id : $id_user;
-        
-        $sql = $this->db->prepare("SELECT * FROM users WHERE id = ?");
-        $sql->execute(array($id_user));
-        
-        if ($sql->rowCount() > 0) {
-            $response = $sql->fetch();
-        }
-        
-        return $response;
-    }
-    
-    /**
      * Edits a registered user.
      * 
      * @param string $name Name of the user
-     * @param string $bio Bio of the user
-     * @param int $genre Genre of the user
-     * @return boolean If the user was successfully registered
+     * @param string $bio Biography of the user
+     * @param int $genre Genre of the user (0: female; 1: male)
+     * @param string $passowrd [optional] New password
+     * @return boolean If the user was successfully edited
      */
-    public function edit($name, $bio, $genre, $password)
+    public function edit($name, $bio, $genre, $password = "")
     {
         if (empty($name)) { return null; }
         
@@ -179,7 +145,7 @@ class Users extends Model
             $toBeUpdated[] = "password=?";
         }
             
-        $sql = $this->db->prepare("UPDATE users SET ".implode(",", $toBeUpdated)." WHERE id = $this->id");
+        $sql = $this->db->prepare("UPDATE users SET ".implode(",", $toBeUpdated)." WHERE id = $this->id_user");
         $sql->execute($data);
         
         if ($sql->rowCount() > 0)
@@ -188,12 +154,68 @@ class Users extends Model
         return $response;
     }
     
-    private function existUser($id)
+    /**
+     * Returns name of the current user. If the id of a user is passed,
+     * returns the name of this user.
+     *
+     * @param int $id_user [optional] Id of the user
+     * @return string Name of the user
+     */
+    public function getName($id_user = -1)
     {
-        if (empty($id)) { return false; }
+        if (empty($this->id_user)) { return ""; }
+        
+        $response = "";
+        
+        $id_user = $id_user == -1 ? $id_user = $this->id_user : $id_user;
+        
+        $sql = $this->db->prepare("SELECT name FROM users WHERE id = ?");
+        $sql->execute(array($id_user));
+        
+        if ($sql->rowCount() > 0) {
+            $response = $sql->fetch()['name'];
+        }
+        
+        return $response;
+    }
+    
+    /**
+     * Returns information about current user. If the id of a user is passed,
+     * returns information about this user.
+     *
+     * @param int $id_user [optional] Id of the user
+     * @return array Data of current user
+     */
+    public function getData($id_user = -1)
+    {
+        if (empty($this->id_user)) { return array(); }
+        
+        $response = array();
+        
+        $id_user = $id_user == -1 ? $id_user = $this->id_user : $id_user;
+        
+        $sql = $this->db->prepare("SELECT * FROM users WHERE id = ?");
+        $sql->execute(array($id_user));
+        
+        if ($sql->rowCount() > 0) {
+            $response = $sql->fetch();
+        }
+        
+        return $response;
+    }
+    
+    /**
+     * Checks if a user exists.
+     * 
+     * @param int $id_user Id of the user
+     * @return boolean If the user exists
+     */
+    private function existUser($id_user)
+    {
+        if (empty($id_user)) { return false; }
         
         $sql = $this->db->prepare("SELECT COUNT(*) AS count FROM users WHERE id = ?");
-        $sql->execute(array($id));
+        $sql->execute(array($id_user));
         
         return $sql && $sql->rowCount() > 0;
     }

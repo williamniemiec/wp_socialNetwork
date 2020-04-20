@@ -4,33 +4,37 @@ namespace controllers;
 use core\Controller;
 use models\Users;
 
+
 /**
- 
+ * Responsible for the behavior of the social network when the user is not logged.
  */
 class LoginController extends Controller
 {
     //-----------------------------------------------------------------------
     //        Methods
     //-----------------------------------------------------------------------
-    /*
-     @Override
+    /**
+     * @Override
      */
     public function index ()
     {
         $params = array(
-            'title' => 'Login'
+            'title' => 'Social Network'
         );
         
-        $this->loadView("login", $params);
+        $this->loadView("home_noLogged", $params);
     }
     
+    /**
+     * Loads login view.
+     */
     public function login()
     {
         $params = array(
-            'title' => 'Login'
+            'title' => 'Social Network - Login'
         );
         
-        // Form was sent
+        // Checks if the form was submitted
         if (!empty($_POST['email']) || !empty($_POST['password'])) {
             $users = new Users();
             $params['notice'] = $users->login($_POST['email'], $_POST['password']);
@@ -38,17 +42,19 @@ class LoginController extends Controller
             exit;
         }
         
-        $this->loadView("login_login", $params);
+        $this->loadView("login", $params);
     }
     
-    
+    /**
+     * Loads register view.
+     */
     public function register()
     {
         $params = array(
-            'title' => 'Login'
+            'title' => 'Social Network - Register'
         );
         
-        // Form was sent
+        // Checks if the form was submitted
         if (!empty($_POST['email']) || !empty($_POST['password'])) {
             $users = new Users();
             $params['notice'] = $users->register($_POST['name'], $_POST['genre'], $_POST['email'], $_POST['password']);
@@ -59,9 +65,12 @@ class LoginController extends Controller
             }
         }
         
-        $this->loadView("login_register", $params);
+        $this->loadView("register", $params);
     }
     
+    /**
+     * Performs user logout.
+     */
     public function logout()
     {
         unset($_SESSION['sn_login']);

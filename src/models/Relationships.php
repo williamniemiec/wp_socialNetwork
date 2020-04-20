@@ -5,23 +5,90 @@ use core\Model;
 
 
 /**
-
-*/
+ * Responsible for managing relationships between users.
+ */
 class Relationships extends Model
 {
     //-----------------------------------------------------------------------
+    //        Attributes
+    //-----------------------------------------------------------------------
+    private $id_user;
+    
+    
+    //-----------------------------------------------------------------------
     //        Constructor
     //-----------------------------------------------------------------------
-    public function __construct($id = "")
+    /**
+     * Creates relationship manager between users.
+     *
+     * @param int $id_user Id of the current user
+     */
+    public function __construct($id_user)
     {
         parent::__construct();
-        $this->id = $id;
+        $this->id_user = $id_user;
     }
     
     
     //-----------------------------------------------------------------------
     //        Methods
     //-----------------------------------------------------------------------
+    /**
+     * Creates a friend request between the current user and another user.
+     * 
+     * @param int $id_user Id of the user that will be requested
+     * @return boolean If the request was successfully registered
+     */
+    public function addFriend($id_user)
+    {
+        if (!$this->existUser($id_user)) { return false; }
+        
+        $sql = $this->db->prepare("INSERT INTO relationships (user_from,user_to) VALUES ($this->id_user,?)");
+        $sql->execute(array($id_user));
+        
+        
+        return $sql && $sql->rowCount() > 0;
+    }
+    
+    /**
+     * Accepts a user who has requested a friendship with the current user.
+     * 
+     * @param int $id_user Id of the accepted user
+     * @return boolean If the friendship request was successfully accepted 
+     */
+    public function acceptFriend($id_user)
+    {
+        $sql = $this->db->prepare("UPDATE relationships SET status = 1 WHERE user_from = ? AND user_to = $this->id_user");
+        $sql->execute(array($id_user));
+        
+        return $sql && $sql->rowCount() > 0;
+    }
+    
+    /**
+     * Removes a user from friends of the current user. It is also used to
+     * reject a friendship request.
+     *
+     * @param int $id_user Id of the user to be removed / rejected
+     */
+    public function removeFriend($id_user)
+    {
+        $sql = $this->db->prepare("
+            DELETE FROM
+                relationships
+            WHERE
+                (user_from = $this->id_user AND user_to = ?) OR
+                (user_to = $this->id_user AND user_from = ?)
+        ");
+        
+        $sql->execute(array($id_user, $id_user));
+    }
+    
+    /**
+     * Gets friend suggestions to the current user.
+     *
+     * @param int $limit Maximum of friend suggestions
+     * @return array Suggested users
+     */
     public function getSuggestions($limit = 5)
     {
         $response = array();
@@ -32,9 +99,9 @@ class Relationships extends Model
             FROM
                 users
             WHERE
-                users.id != $this->id AND
-            	users.id NOT IN(select relationships.user_from from relationships WHERE relationships.user_from = $this->id OR relationships.user_to = $this->id) AND
-                users.id NOT IN(select relationships.user_to from relationships WHERE relationships.user_from = $this->id OR relationships.user_to = $this->id)
+                users.id != $this->id_user AND
+            	users.id NOT IN(select relationships.user_from from relationships WHERE relationships.user_from = $this->id_user OR relationships.user_to = $this->id_user) AND
+                users.id NOT IN(select relationships.user_to from relationships WHERE relationships.user_from = $this->id_user OR relationships.user_to = $this->id_user)
             ORDER BY RAND()
         ";
         
@@ -49,6 +116,11 @@ class Relationships extends Model
         return $response;
     }
     
+    /**
+     * Gets all friendship requests for the current user.
+     *
+     * @return array Users who requested friendship with the current user
+     */
     public function getFriendshipRequests()
     {
         $response = array();
@@ -60,7 +132,7 @@ class Relationships extends Model
             FROM
             	relationships
             WHERE
-                relationships.user_to = $this->id AND
+                relationships.user_to = $this->id_user AND
                 relationships.status = 0
         ";
         
@@ -73,82 +145,12 @@ class Relationships extends Model
         return $response;
     }
     
-    public function addFriend($id_user)
-    {
-        if (!$this->existUser($id_user)) { return false; }
-        
-        $sql = $this->db->prepare("INSERT INTO relationships (user_from,user_to) VALUES ($this->id,?)");
-        $sql->execute(array($id_user));
-        
-        
-        return $sql && $sql->rowCount() > 0;
-    }
-    
-    public function acceptFriend($id)
-    {
-        $sql = $this->db->prepare("UPDATE relationships SET status = 1 WHERE user_from = ? AND user_to = $this->id");
-        $sql->execute(array($id));
-        
-        return $sql && $sql->rowCount() > 0;
-    }
-    
-    public function getFriendsOld($limit = 10)
-    {
-        $response = array();
-        
-        $sql_from = ("
-            SELECT
-            	users.id,
-            	users.name
-            FROM
-            	relationships
-            LEFT JOIN
-                users
-            ON
-                users.id = relationships.user_to
-            WHERE
-            	user_from = $this->id  AND
-            	STATUS = 1
-        ");
-        
-        $sql_to = ("
-            SELECT
-            	users.id,
-            	users.name
-            FROM
-            	relationships
-            LEFT JOIN
-                users
-            ON
-                users.id = relationships.user_from
-            WHERE
-            	user_to = $this->id  AND
-            	STATUS = 1
-        ");
-        
-        $sql_from .= " LIMIT ".intval($limit);
-        $sql_to .= " LIMIT ".intval($limit);
-        
-        $sql_from = $this->db->query($sql_from);
-        $sql_to = $this->db->query($sql_to);
-        
-        // If both have results, merge them
-        if ($sql_from && $sql_from->rowCount() > 0 && $sql_to && $sql_to->rowCount() > 0) {
-            
-            $response = $this->merge($sql_from->fetchAll(), $sql_to->fetchAll());
-        }
-        
-        else if ($sql_from && $sql_from->rowCount() > 0) {
-            $response = $sql_from->fetchAll();
-        }
-        
-        else if ($sql_to && $sql_to->rowCount() > 0) {
-            $response = $sql_to->fetchAll();
-        }
-        
-        return $response;
-    }
-    
+    /**
+     * Gets all friends of the current user (respecting the limit value).
+     * 
+     * @param int $limit Maximum of friends that will be returned
+     * @return array Friends of the current user
+     */
     public function getFriends($limit = 10)
     {
         $response = array();
@@ -161,7 +163,7 @@ class Relationships extends Model
             FROM
                 users
             WHERE
-                id != $this->id AND
+                id != $this->id_user AND
                 id IN (".implode(",", $friendIds).")
         ";
         
@@ -173,60 +175,16 @@ class Relationships extends Model
         return $response;
     }
     
-    public function removeFriend($id)
-    {
-        $sql = $this->db->prepare("
-            DELETE FROM
-                relationships
-            WHERE
-                (user_from = $this->id AND user_to = ?) OR
-                (user_to = $this->id AND user_from = ?)
-        ");
-        
-        $sql->execute(array($id, $id));
-    }
-    
-    private function merge($array1, $array2)
-    {
-        $response = array();
-        
-        // Remove duplicates
-        for ($i=0; $i<count($array1); $i++) {
-            for ($j=0; $j<count($array2); $j++) {
-                if ($array1[$i]['id'] == $array2[$j]['id']) {
-                    unset($array2[$j]);
-                    $array2 = array_values($array2);
-                    $j--;
-                }
-            }
-        }
-        
-        for ($i=0; $i<count($array2); $i++) {
-            for ($j=0; $j<count($array1); $j++) {
-                if ($array2[$i]['id'] == $array1[$j]['id']) {
-                    unset($array1[$j]);
-                    $array1 = array_values($array1);
-                }
-            }
-        }
-        
-        // Merge them
-        foreach ($array1 as $item) {
-            $response[] = $item;
-        }
-        
-        foreach ($array2 as $item) {
-            $response[] = $item;
-        }
-        
-        return $response;
-    }
-    
+    /**
+     * Gets the id of all friends of the current user.
+     *
+     * @return array Id of all friends of the current user
+     */
     public function getFriendsIds()
     {
         $response = array();
         
-        $sql = "SELECT * FROM relationships WHERE (user_from = $this->id OR user_to = $this->id) AND status = 1";
+        $sql = "SELECT * FROM relationships WHERE (user_from = $this->id_user OR user_to = $this->id_user) AND status = 1";
         $sql = $this->db->query($sql);
         
         if ($sql->rowCount() > 0) {
@@ -239,12 +197,18 @@ class Relationships extends Model
         return $response;
     }
     
-    private function existUser($id)
+    /**
+     * Checks if a user exist.
+     * 
+     * @param int $id_user Id of the user
+     * @return boolean If the user exists
+     */
+    private function existUser($id_user)
     {
-        if (empty($id)) { return false; }
+        if (empty($id_user)) { return false; }
         
         $sql = $this->db->prepare("SELECT COUNT(*) AS count FROM users WHERE id = ?");
-        $sql->execute(array($id));
+        $sql->execute(array($id_user));
         
         return $sql && $sql->rowCount() > 0;
     }

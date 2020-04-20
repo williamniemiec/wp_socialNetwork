@@ -3,40 +3,36 @@ namespace controllers;
 
 use core\Controller;
 use models\Users;
-use models\Relationships;
-use models\Posts;
-use models\Groups;
 use models\Search;
 
 
 /**
-
-*/
+ * Responsible for search view behavior.
+ */
 class SearchController extends Controller
 {
     //-----------------------------------------------------------------------
     //        Methods
     //-----------------------------------------------------------------------
-    /*
-      @Override
-    */
+    /**
+     * @Override
+     */
     public function index ()
     {
         $users = new Users($_SESSION['sn_login']);
-        $relationships = new Relationships($_SESSION['sn_login']);
-        $posts = new Posts($_SESSION['sn_login']);
-        $groups = new Groups($_SESSION['sn_login']);
         $search = new Search($_SESSION['sn_login']);
         
+        // Checks if a query was submitted.
         if (empty($_GET['q'])) {
             header("Location: ".BASE_URL);
         }
         
+        // Gets current page
         $page = empty($_GET['p']) ? 1 : $_GET['p'];
         $resultsPerPage = 2;
-        $searchResult = $search->searchUsers($_GET['q'], $page, $resultsPerPage);
         
-        //$totalResults = count($search);
+        // Gets posts of this page
+        $searchResult = $search->searchUsers($_GET['q'], $page, $resultsPerPage);
         $totalResults = $search->totalResults($_GET['q']);
         $totalPages = $totalResults < $resultsPerPage ? 1 : ceil($totalResults / $resultsPerPage);
         

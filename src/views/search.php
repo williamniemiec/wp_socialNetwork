@@ -1,5 +1,7 @@
 <h1>Search for "<?php echo $search; ?>"</h1>
+
 <div class="results">
+	<!-- Results -->
 	<?php foreach ($response as $result): ?>	
     	<div class="result">
     		<div class="search_info">
@@ -20,6 +22,8 @@
     		</div>
     	</div>
 	<?php endforeach; ?>
+	
+	<!-- Pagination -->
 	<ul class="pagination pagination-sm justify-content-center">
 		<li class="page-item <?php echo $page == 1 ? "disabled" : "" ?>">
 			<a href="<?php echo $currentURL."&p=".intval($page-1); ?>" class="page-link">Previous</a>

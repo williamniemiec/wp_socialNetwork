@@ -1,8 +1,12 @@
+<!-- Title + total of members -->
 <h1><?php echo $groupName; ?> (<?php echo $totalMembers == 1 ? "$totalMembers member" : "$totalMembers members"; ?>)</h1>
+
 <div class="row">
+    <!-- Center area -->
 	<div class="col-sm-8">
 		<h4>Posts</h4>
 		
+		<!-- Post input -->
 		<div class="post_area">
 			<h5>What are you thinking?</h5>
 			<form method="POST" enctype="multipart/form-data">
@@ -12,10 +16,12 @@
 			</form>	
 		</div>
     	
+    	<!-- Posts -->
     	<?php foreach($posts as $p) {
     	    $this->loadView("postView", $p);
     	} ?>
     	
+    	<!-- Pagination -->
     	<ul class="pagination pagination-sm justify-content-center">
     		<li class="page-item <?php echo $page == 1 ? "disabled" : "" ?>">
     			<a href="<?php echo $currentURL."?p=".intval($page-1); ?>" class="page-link">Previous</a>
@@ -30,7 +36,10 @@
     		<li class="page-item <?php echo $page == $totalPages ? "disabled" : "" ?>"><a href="<?php echo $currentURL."?p=".intval($page+1); ?>" class="page-link">Next</a></li>
     	</ul>
 	</div>
+	
+	<!-- Right area -->
 	<div class="col-sm-4">
+		<!-- Members of the group -->
 		<div class="widget">
 			<h4>Members</h4>
 			<div class="content">
