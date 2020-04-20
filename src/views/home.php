@@ -114,7 +114,7 @@
             				<?php endif; ?>
             				
             				<?php if ($group['isMember'] && !$group['isOwner']): ?>
-            					<button class="btn btn-outline-warning" onclick="exitGroup(this,<?php echo $group['id']; ?>)">Exit</button>
+            					<button class="btn btn-outline-danger" onclick="exitGroup(this,<?php echo $group['id']; ?>)">Exit</button>
             				<?php else: if (!$group['isMember'] && !$group['isOwner']): ?>
             					<button class="btn btn-outline-primary" onclick="enterGroup(this,<?php echo $group['id']; ?>)">Enter</button>
             				<?php endif;endif; ?>

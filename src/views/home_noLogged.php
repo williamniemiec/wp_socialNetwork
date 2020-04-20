@@ -6,12 +6,12 @@
 	</head>
 	
 	<body>
-		<nav class="navbar bg-dark">
+		<nav class="navbar">
 			<div class="container">
 				<ul class="navbar-nav navbar-left">
 					<li><a href="<?php echo BASE_URL; ?>" class="nav-item nav-link">Social network</a></li>
 				</ul>
-				<ul class="navbar-nav navbar-right ">
+				<ul id="actions_noLogged" class="navbar-nav navbar-right">
 					<li class="nav-item"><a href="<?php echo BASE_URL; ?>login/login" class="nav-link">Login</a></li>
 					<li class="nav-item"><a href="<?php echo BASE_URL; ?>login/register" class="nav-link">Register</a></li>
 				</ul>
@@ -19,8 +19,8 @@
 		</nav>
 		
 		<div class="container">
-			<h1>Welcome!</h1>
-			<h4>The better social network of local host</h4>
+			<h1 class="home_title">Welcome!</h1>
+			<h4 class="home_description">The best social network</h4>
 		</div>
 	
 		<!-- Scripts -->

@@ -9,7 +9,7 @@
 	</head>
 	
 	<body>
-		<nav class="navbar bg-dark">
+		<nav class="navbar">
 			<div class="container">
 				<ul class="navbar-nav navbar-left">
 					<li><a href="<?php echo BASE_URL; ?>" class="nav-item nav-link">Social network</a></li>

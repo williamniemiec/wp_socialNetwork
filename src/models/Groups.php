@@ -271,7 +271,7 @@ class Groups extends Model
     {
         if (empty($id_group)) { return 0; }
         
-        $sql = $this->db->prepare("SELECT COUNT(*) AS count FROM groups WHERE id = ?");
+        $sql = $this->db->prepare("SELECT COUNT(*) AS count FROM groups_members WHERE id_group = ?");
         $sql->execute(array($id_group));
         
         return $sql->fetch()['count'];

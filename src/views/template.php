@@ -4,12 +4,12 @@
         <title><?php echo $title; ?></title>
         <script src='<?php echo BASE_URL; ?>assets/js/jquery-3.4.1.min.js'></script>
         <link rel='stylesheet' href='<?php echo BASE_URL; ?>assets/css/bootstrap.min.css' />
-        <link rel='stylesheet' href='<?php echo BASE_URL; ?>assets/css/style.css' />
         <link href='http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css' rel='stylesheet' />
+        <link rel='stylesheet' href='<?php echo BASE_URL; ?>assets/css/style.css' />
     </head>
 
     <body>
-    	<nav class="navbar bg-dark">
+    	<nav class="navbar">
 			<div class="container">
 				<ul class="nav navbar-left">
 					<li class="brand"><a href="<?php echo BASE_URL; ?>" class="nav-item nav-link">Social network</a></li>
