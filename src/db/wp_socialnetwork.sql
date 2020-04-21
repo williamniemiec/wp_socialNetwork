@@ -39,7 +39,7 @@ CREATE TABLE IF NOT EXISTS `groups_members` (
   `id_group` int(11) NOT NULL,
   `id_user` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=20 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=21 DEFAULT CHARSET=utf8;
 
 -- Copiando dados para a tabela wp_socialnetwork.groups_members: 7 rows
 /*!40000 ALTER TABLE `groups_members` DISABLE KEYS */;
@@ -72,7 +72,7 @@ INSERT INTO `posts` (`id`, `id_user`, `date_creation`, `type`, `text`, `url`, `i
 	(17, 1, '2020-04-15 14:24:43', 'photo', 'Donec rutrum iaculis efficitur. Etiam nec orci vitae dolor vestibulum porttitor. Sed ut nisi ac risus convallis efficitur id dapibus metus. Pellentesque et magna porttitor tortor laoreet porta nec ac enim. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Phasellus tristique venenatis euismod. In lacinia metus est, vel aliquet mi pretium sit amet. Integer consequat tellus felis. Vestibulum a sagittis diam. Maecenas malesuada nisi a metus convallis tincidunt. Maecenas enim nunc, pharetra at sem vitae, dapibus consectetur dolor. Sed sed justo convallis, rutrum ligula at, facilisis nibh. Pellentesque pharetra risus ullamcorper pellentesque tristique. Aliquam erat volutpat.', '30291ad2980b3c57db0f0d37f09bfaee.jpeg', 0),
 	(20, 1, '2020-04-15 15:19:53', 'text', 'Donec facilisis quis sapien quis vulputate. Praesent accumsan eu diam vitae pulvinar. Nam nisl lacus, volutpat et tortor sit amet, suscipit consequat ligula. Fusce vitae ullamcorper turpis. Vestibulum vel bibendum nibh.', NULL, 0),
 	(21, 1, '2020-04-15 15:25:39', 'photo', '', '0ea994ca83be10d699fec72fb3b2241d.jpeg', 0),
-	(31, 2, '2020-04-16 20:19:37', 'text', 'Sed in facilisis ipsum, tristique hendrerit metus.', NULL, 11),
+	(31, 2, '2020-04-16 20:19:37', 'text', 'This is my group', NULL, 11),
 	(30, 1, '2020-04-16 19:08:27', 'text', 'Post inside group', NULL, 10),
 	(25, 4, '2020-04-15 15:30:18', 'text', 'Hello!', NULL, 0),
 	(32, 1, '2020-04-17 15:19:29', 'text', 'Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Pellentesque molestie ullamcorper commodo. Cras sit amet semper lectus. Vivamus sit amet enim sed sapien dictum laoreet. Nunc a facilisis nisi. Nulla mollis vitae nulla nec hendrerit. Praesent id ullamcorper mauris. Ut sit amet eros ultrices, vulputate dolor at, facilisis erat. Proin ac libero a sapien tempus vestibulum at quis augue. Donec consectetur pretium neque vel tristique. Duis id condimentum orci. Donec in fringilla magna.', NULL, 11),
@@ -100,12 +100,12 @@ CREATE TABLE IF NOT EXISTS `posts_comments` (
 -- Copiando dados para a tabela wp_socialnetwork.posts_comments: 6 rows
 /*!40000 ALTER TABLE `posts_comments` DISABLE KEYS */;
 INSERT INTO `posts_comments` (`id`, `id_user`, `id_post`, `date_creation`, `text`) VALUES
-	(1, 1, 16, '2020-04-15 18:14:33', 'Sed in facilisis ipsum, tristique hendrerit metus.'),
-	(2, 1, 16, '2020-04-15 19:23:55', 'Sed in facilisis ipsum, tristique hendrerit metus.'),
-	(3, 1, 16, '2020-04-15 19:26:37', 'Sed in facilisis ipsum, tristique hendrerit metus.'),
-	(4, 1, 16, '2020-04-15 20:08:45', 'Sed in facilisis ipsum, tristique hendrerit metus.'),
-	(14, 1, 25, '2020-04-15 20:42:16', 'Sed in facilisis ipsum, tristique hendrerit metus.'),
-	(16, 1, 31, '2020-04-16 20:57:11', 'Sed in facilisis ipsum, tristique hendrerit metus.');
+	(1, 1, 16, '2020-04-15 18:14:33', 'Sed in facilisis ipsum, tristique hendrerit metus. Donec vel cursus elit, non commodo nisl. Aliquam vulputate arcu id enim sodales sollicitudin. Nunc non fermentum ipsum. Mauris euismod diam felis, at interdum diam mollis eu. Fusce lacinia vulputate arcu at commodo. Vivamus eros tortor, pellentesque ut neque vitae, rhoncus tincidunt tortor.'),
+	(2, 1, 16, '2020-04-15 19:23:55', 'Sed in facilisis ipsum, tristique hendrerit metus. Donec vel cursus elit, non commodo nisl. Aliquam vulputate arcu id enim sodales sollicitudin. Nunc non fermentum ipsum. Mauris euismod diam felis, at interdum diam mollis eu. Fusce lacinia vulputate arcu at commodo. Vivamus eros tortor, pellentesque ut neque vitae, rhoncus tincidunt tortor.'),
+	(3, 1, 16, '2020-04-15 19:26:37', 'Sed in facilisis ipsum, tristique hendrerit metus. Donec vel cursus elit, non commodo nisl. Aliquam vulputate arcu id enim sodales sollicitudin. Nunc non fermentum ipsum. Mauris euismod diam felis, at interdum diam mollis eu. Fusce lacinia vulputate arcu at commodo. Vivamus eros tortor, pellentesque ut neque vitae, rhoncus tincidunt tortor.'),
+	(4, 1, 16, '2020-04-15 20:08:45', 'Sed in facilisis ipsum, tristique hendrerit metus. Donec vel cursus elit, non commodo nisl. Aliquam vulputate arcu id enim sodales sollicitudin. Nunc non fermentum ipsum. Mauris euismod diam felis, at interdum diam mollis eu. Fusce lacinia vulputate arcu at commodo. Vivamus eros tortor, pellentesque ut neque vitae, rhoncus tincidunt tortor.'),
+	(14, 1, 25, '2020-04-15 20:42:16', 'Sed in facilisis ipsum, tristique hendrerit metus. Donec vel cursus elit, non commodo nisl. Aliquam vulputate arcu id enim sodales sollicitudin. Nunc non fermentum ipsum. Mauris euismod diam felis, at interdum diam mollis eu. Fusce lacinia vulputate arcu at commodo. Vivamus eros tortor, pellentesque ut neque vitae, rhoncus tincidunt tortor.'),
+	(16, 1, 31, '2020-04-16 20:57:11', 'Sed in facilisis ipsum, tristique hendrerit metus. Donec vel cursus elit, non commodo nisl. Aliquam vulputate arcu id enim sodales sollicitudin. Nunc non fermentum ipsum. Mauris euismod diam felis, at interdum diam mollis eu. Fusce lacinia vulputate arcu at commodo. Vivamus eros tortor, pellentesque ut neque vitae, rhoncus tincidunt tortor.');
 /*!40000 ALTER TABLE `posts_comments` ENABLE KEYS */;
 
 -- Copiando estrutura para tabela wp_socialnetwork.posts_likes
@@ -114,14 +114,15 @@ CREATE TABLE IF NOT EXISTS `posts_likes` (
   `id_user` int(11) DEFAULT NULL,
   `id_post` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=39 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=43 DEFAULT CHARSET=utf8;
 
--- Copiando dados para a tabela wp_socialnetwork.posts_likes: 3 rows
+-- Copiando dados para a tabela wp_socialnetwork.posts_likes: 4 rows
 /*!40000 ALTER TABLE `posts_likes` DISABLE KEYS */;
 INSERT INTO `posts_likes` (`id`, `id_user`, `id_post`) VALUES
 	(19, 1, 16),
 	(37, 1, 25),
-	(38, 1, 31);
+	(38, 1, 31),
+	(42, 1, 41);
 /*!40000 ALTER TABLE `posts_likes` ENABLE KEYS */;
 
 -- Copiando estrutura para tabela wp_socialnetwork.relationships
