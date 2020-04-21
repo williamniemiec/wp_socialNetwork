@@ -56,7 +56,8 @@ This is a project about a social network. Its aims is not to be a complete socia
 #### Home (no logged)
 ![home_noLogged](https://github.com/williamniemiec/wp_socialNetwork/blob/master/media/example/home-noLogged.png?raw=true)
 #### Home (logged)
-![home_logged](https://github.com/williamniemiec/wp_socialNetwork/blob/master/media/app/home.png?raw=true)
+![home_logged](https://github.com/williamniemiec/wp_socialNetwork/blob/master/media/example/home.png?raw=true)
+
 #### Group's page
 ![group](https://github.com/williamniemiec/wp_socialNetwork/blob/master/media/example/group.png?raw=true)
 #### Profile
