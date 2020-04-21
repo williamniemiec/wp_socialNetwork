@@ -1,5 +1,5 @@
 # [Website Project] Social Network
-![socialNetwork logo]( https://github.com/williamniemiec/wp_socialNetwork/blob/master/media/logo/logo.jpg?raw=true)
+![socialNetwork logo](https://github.com/williamniemiec/wp_socialNetwork/blob/master/media/logo/logo.png?raw=true)
 
 This is a project about a social network. Its aims is not to be a complete social network, however it can serve as a basis for building one. This project uses [MVC design pattern](https://github.com/williamniemiec/MVC-in-PHP), made in PHP.
 
@@ -54,13 +54,12 @@ This is a project about a social network. Its aims is not to be a complete socia
 
 ## Application photos
 #### Home (no logged)
-![home_noLogged](https://github.com/williamniemiec/wp_socialNetwork/blob/master/media/app/home_noLogged.png?raw=true)
+![home_noLogged](https://github.com/williamniemiec/wp_socialNetwork/blob/master/media/example/home-noLogged.png?raw=true)
 #### Home (logged)
-![home_logged](https://github.com/williamniemiec/wp_socialNetwork/blob/master/media/app/home_logged.png?raw=true)
-
-
-#### About
-![about](https://github.com/williamniemiec/wp_socialNetwork/blob/master/media/app/about.png?raw=true)
-#### Register
-![register](https://github.com/williamniemiec/wp_socialNetwork/blob/master/media/app/register.png?raw=true)
-![register_success](https://github.com/williamniemiec/wp_socialNetwork/blob/master/media/app/register-success.png?raw=true)
+![home_logged](https://github.com/williamniemiec/wp_socialNetwork/blob/master/media/app/home.png?raw=true)
+#### Group's page
+![group](https://github.com/williamniemiec/wp_socialNetwork/blob/master/media/example/group.png?raw=true)
+#### Profile
+![profile](https://github.com/williamniemiec/wp_socialNetwork/blob/master/media/example/profile.png?raw=true)
+#### Search
+![search](https://github.com/williamniemiec/wp_socialNetwork/blob/master/media/example/search.png?raw=true)
