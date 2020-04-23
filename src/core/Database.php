@@ -2,6 +2,9 @@
 namespace core;
 
 
+/**
+ * Class responsible for connecting to the database.
+ */
 class Database extends \PDO
 {
     public function __construct()

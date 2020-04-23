@@ -2,6 +2,8 @@
 	<head>
 		<title>$title</title>
 		<link rel='stylesheet' href='<?php echo BASE_URL; ?>assets/css/bootstrap.min.css' />
+		<link rel='stylesheet' href='<?php echo BASE_URL; ?>assets/css/home.css' />
+        <link rel='stylesheet' href='<?php echo BASE_URL; ?>assets/css/navbar.css' />
 		<link rel='stylesheet' href='<?php echo BASE_URL; ?>assets/css/style.css' />
 	</head>
 	

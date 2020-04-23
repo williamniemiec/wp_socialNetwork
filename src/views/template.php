@@ -5,6 +5,11 @@
         <script src='<?php echo BASE_URL; ?>assets/js/jquery-3.4.1.min.js'></script>
         <link rel='stylesheet' href='<?php echo BASE_URL; ?>assets/css/bootstrap.min.css' />
         <link href='http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css' rel='stylesheet' />
+        <link rel='stylesheet' href='<?php echo BASE_URL; ?>assets/css/home.css' />
+        <link rel='stylesheet' href='<?php echo BASE_URL; ?>assets/css/post.css' />
+        <link rel='stylesheet' href='<?php echo BASE_URL; ?>assets/css/group.css' />
+        <link rel='stylesheet' href='<?php echo BASE_URL; ?>assets/css/search.css' />
+        <link rel='stylesheet' href='<?php echo BASE_URL; ?>assets/css/navbar.css' />
         <link rel='stylesheet' href='<?php echo BASE_URL; ?>assets/css/style.css' />
     </head>
 
@@ -41,7 +46,7 @@
         <!-- Scripts -->
         <script src='<?php echo BASE_URL; ?>assets/js/bootstrap.bundle.min.js'></script>
         <script>var BASE_URL = "<?php echo BASE_URL; ?>"</script>
-        <script src='<?php echo BASE_URL; ?>assets/js/script.js'></script>
+        <script src='<?php echo BASE_URL; ?>assets/js/ajax.js'></script>
 		
 		<div class="container">
         	<?php $this->loadView($viewName, $viewData); ?>
