@@ -1,0 +1,35 @@
+/* HOME */
+.home_title, .home_description {
+	text-align: center;
+}
+.home_title {
+	font-size: 9.5rem;
+	text-align: center;
+}
+
+.home_description {
+	font-size: 1.5rem;
+}
+
+.suggestion, .friendRequest, .friend, .group {
+	display: flex;
+	justify-content: space-between;
+	margin-bottom: 10px;
+	align-items: center;
+}
+
+.content {
+	margin-top: 20px;
+}
+
+.content button {
+	margin-bottom:10px;
+}
+
+.widget {
+	margin-bottom: 40px;
+}
+
+.request_action a {
+	margin-left: 20px;
+}

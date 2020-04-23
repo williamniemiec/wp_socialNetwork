@@ -1,0 +1,77 @@
+/* POST */
+.post_area {
+	border:			1px solid #AAA;
+	border-radius: 	3px;
+	padding:		15px;
+	
+}
+
+.post_area textarea, .comment_form textarea{
+	min-height: 110px;
+}
+
+input[type='file'] {
+	padding: 3px;
+    padding-left: 10px;
+}
+
+.post, .comment_form {
+    margin-bottom: 15px;
+    margin-top: 15px;
+}
+
+.post h6 {
+	display: inline;
+	margin-right: 10px;
+}
+
+.post_info, .comment_info {
+	margin-bottom: 15px;
+	display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.comments {
+	width: 100%;
+	display: none;
+}
+
+.comments form {
+	margin-top: 10px;
+}
+
+.comment {
+	margin-top: 10px;
+	border: 1px solid #ddd;
+	border-radius: 5px;
+	padding: 15px 15px;
+	box-shadow: 4px 5px #888;
+}
+
+.post_content {
+	display: flex;
+	flex-direction: column;
+	
+	border-bottom: 1px solid #ddd;
+    padding-bottom: 30px;
+
+	/*display: flex;
+	flex-direction: column;
+	justify-content:center;
+	align-items: center;
+	*/
+	/*text-align: center;*/
+	
+}
+.post .image {
+	/*background-color: blue;*/
+	max-height: 400px;
+	max-width: 600px;
+	margin: auto;
+}
+
+.post .content {
+	/*background-color: red;*/
+	margin-bottom:10px;
+}

@@ -1,0 +1,17 @@
+/* SEARCH */
+.result {
+	display: flex;
+	flex-direction: column;
+    border: 1px solid #ddd;
+    padding: 20px;
+    margin-bottom: 15px;
+}
+
+.search_name {
+	margin-bottom: 15px;
+}
+
+.search_info {
+	display: flex;
+	justify-content: space-between;
+}

@@ -1,0 +1,19 @@
+/* GROUP */
+.group_name {
+    margin-left: 15px;
+	border: 1px solid #ddd;
+    padding: 5px;
+    border-radius: 5px;
+    color:#aaa;
+}
+
+.member {
+	border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.member:hover {
+	background-color: #eee;
+}
